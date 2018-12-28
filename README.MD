@@ -1,8 +1,8 @@
-﻿#Sinh viên thực hiện: Dương Đình Quang
-##MSSV: 20152938
-#Đề tài: Xây dựng hệ thống website bán sách với NodeJS và Framework Express
+﻿# Sinh viên thực hiện: Dương Đình Quang
+## MSSV: 20152938
+# Đề tài: Xây dựng hệ thống website bán sách với NodeJS và Framework Express
 
-##Các bước khởi chạy project 
+## Các bước khởi chạy project 
 
 1. Cài đặt NodeJS
 2. Import file sql trong thư mục database vào MySQL Workbench
