@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Quản lý sản phẩm</title>
+  <script src="/static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+  <script src="/static/js/vendor/jquery-library.js"></script>
+  <script src="/static/js/vendor/version2bootstrap.min.js"></script>
+
+  <!-- DataTables CSS -->
+  <link href="/static/testDataTable/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet" />
+
+  <!-- DataTables Responsive CSS -->
+  <link href="/static/testDataTable/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link href="/static/testDataTable/dist/css/sb-admin-2.css" rel="stylesheet" />
+
+  <!-- Custom Fonts -->
+  <link href="/static/testDataTable/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div>
+    <%- include ../components/navbar %>
+
+    <!-- <div id="wrapper"> -->
+    <!-- <div id="page-wrapper"> -->
+    <section class="container-fluid" style="margin-top: 4vw">
+      <div class="row">
+        <div class="col-lg-12">
+          <div>
+            <a href="thukho/sach/new" class="btn btn-success" style="margin-bottom: 1vw">Thêm sản phẩm</a>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">Bảng chi tiết sản phẩm</div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+              <table width="100%" class="table table-striped table-bordered table-hover" id="sach_table">
+                <thead>
+                  <tr>
+                    <th>Mã sách</th>
+                    <th>Thể loại</th>
+                    <th>Tên sách</th>
+                    <th>Tác giả</th>
+                    <th>Nhà xuất bản</th>
+                    <th>Năm xuất bản</th>
+                    <th>Số lượng</th>
+                    <th>Giá Nhập</th>
+                    <th>Giá Bán</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(data && data.sach) {%>
+                  <%for(var i=0; i <
+                    data.sach.length; i++){%>
+                  <tr title="Nhấn để xem chi tiết">
+                    <td>
+                      <%= data.sach[i].ma_sach%>
+                    </td>
+                    <td>
+                      <%= data.sach[i].ten_the_loai%>
+                    </td>
+                    <td>
+                      <%= data.sach[i].ten_sach%>
+                    </td>
+                    <td>
+                      <%= data.sach[i].tac_gia%>
+                    </td>
+                    <td>
+                      <%= data.sach[i].nha_xuat_ban%>
+                    </td>
+                    <td>
+                      <%= data.sach[i].nam_xuat_ban%>
+                    </td>
+                    <td>
+                      <%= data.sach[i].so_luong%>
+                    </td>
+                    <td>
+                      <%= data.sach[i].gia_nhap%>
+                    </td>
+                    <td>
+                      <%= data.sach[i].gia_ban%>
+                    </td>
+                    <td>
+                      <a name="buttonEdit" id="buttonEdit" class="btn btn-primary" href="/thukho/sach/edit/<%= data.sach[i].ma_sach%>"
+                        role="button">Edit</a>
+
+                      <button title="Xoá sản phẩm" name="buttonDelete" id="buttonDelete" class="btn btn-danger delete_book_thukho"
+                        ma_sach=<%=data.sach[i].ma_sach%>
+                        >Delete</button>
+                    </td>
+                  </tr>
+                  <%}%>
+                  <%}%>
+                </tbody>
+              </table>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+          </div>
+          <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+      </div>
+      <!-- /.row -->
+      <!-- </div> -->
+      <!-- /#page-wrapper -->
+      <!-- </div> -->
+      <!-- /#wrapper -->
+    </section>
+    <!-- /.row -->
+  </div>
+
+  <!-- jQuery -->
+  <script src="/static/testDataTable/vendor/jquery/jquery.min.js"></script>
+  <!-- DataTables JavaScript -->
+  <script src="/static/testDataTable/vendor/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="/static/testDataTable/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+  <script src="/static/testDataTable/vendor/datatables-responsive/dataTables.responsive.js"></script>
+  <script src="/static/js/book.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#sach_table").DataTable({
+        responsive: true
+      });
+    });
+  </script>
+</body>
+
+</html>

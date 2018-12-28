@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Đơn hàng cần giao</title>
+    <script src="/static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <script src="/static/js/vendor/jquery-library.js"></script>
+    <script src="/static/js/vendor/version2bootstrap.min.js"></script>
+
+    <!-- DataTables CSS -->
+    <link
+      href="/static/testDataTable/vendor/datatables-plugins/dataTables.bootstrap.css"
+      rel="stylesheet"
+    />
+
+    <!-- DataTables Responsive CSS -->
+    <link
+      href="/static/testDataTable/vendor/datatables-responsive/dataTables.responsive.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link
+      href="/static/testDataTable/dist/css/sb-admin-2.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Fonts -->
+    <link
+      href="/static/testDataTable/vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+
+  <body>
+    <div>
+      <%- include ../components/navbar %>
+      <!-- <div id="wrapper"> -->
+      <!-- <div id="page-wrapper"> -->
+      <div class="row container" style="margin-top: 4vw"></div>
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">Đơn hàng cần giao</div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+              <table
+                width="100%"
+                class="table table-striped table-bordered table-hover"
+                id="bill_table"
+              >
+                <thead>
+                  <tr>
+                    <th>Mã HĐB</th>
+                    <th>Tên khách hàng</th>
+                    <th>Ngày</th>
+                    <th>Sản phẩm</th>
+                    <th>ID Shipper</th>
+                    <th>Trạng thái đơn</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%for(let i=0; i < data.bills.length; i++){%>
+                  <input
+                    class="ma_hoa_don_ban"
+                    type="hidden"
+                    value="<%= data.bills[i].ma_hoa_don_ban%>"
+                  />
+                  <input
+                    class="ma_tai_khoan"
+                    type="hidden"
+                    value="<%= data.bills[i].ma_tai_khoan%>"
+                  />
+                  <input
+                    class="ngay_tao"
+                    type="hidden"
+                    value="<%= data.bills[i].ngay_tao%>"
+                  />
+                  <input
+                    class="trang_thai_don"
+                    type="hidden"
+                    value="<%= data.bills[i].trang_thai_don%>"
+                  />
+                  <input
+                    class="id_shipper%"
+                    type="hidden"
+                    value="<%= data.bills[i].id_shipper%>"
+                  />
+                  <tr>
+                    <td><%= data.bills[i].ma_hoa_don_ban%></td>
+                    <td><%= data.bills[i].ho_ten%></td>
+                    <td><%= data.bills[i].ngay_tao%></td>
+
+                    <td>
+                      <% for(let j = 0; j < data.bills[i].san_pham.length; j++)
+                      {%> Mã sách: <%= data.bills[i].san_pham[j].ma_sach%>
+                      <br />Tên sách: <%=
+                      data.bills[i].san_pham[j].ten_sach%><br />
+                      Số lượng: <%= data.bills[i].san_pham[j].so_luong%>
+                      <br /><br />
+                      <%}%>
+                    </td>
+
+                    <td><%= data.bills[i].id_shipper%></td>
+                    <td>Đã duyệt</td>
+                    <td>
+                      <a
+                        title="Giao hàng"
+                        name="buttonUpdate"
+                        id="buttonUpdate"
+                        class="btn btn-info"
+                        role="button"
+                        href="/thukho/bills/delivery/<%=data.bills[i].ma_hoa_don_ban%>"
+                        >Giao hàng</a
+                      >
+                      <!-- <button title="Xoá hoá đơn" name="buttonDelete" id="buttonDelete" class="btn btn-danger delete_bill_admin"
+                                            ma_hoa_don_ban=<%=data.bills[i].ma_hoa_don_ban%>
+                                            >
+                                            Huỷ
+                                        </button> -->
+                    </td>
+                  </tr>
+                  <%}%>
+                </tbody>
+              </table>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+          </div>
+          <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+      </div>
+      <!-- /.row -->
+      <!-- </div> -->
+      <!-- /#page-wrapper -->
+      <!-- </div> -->
+      <!-- /#wrapper -->
+    </div>
+
+    <!-- jQuery -->
+    <script src="/static/testDataTable/vendor/jquery/jquery.min.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="/static/testDataTable/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/static/testDataTable/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="/static/testDataTable/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="/static/js/bill.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#bill_table").DataTable({
+          responsive: true
+        });
+      });
+    </script>
+  </body>
+</html>

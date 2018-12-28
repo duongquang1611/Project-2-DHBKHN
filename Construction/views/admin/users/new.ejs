@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Thêm người dùng</title>
+</head>
+<script src="/static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+<script src="/static/js/vendor/jquery-library.js"></script>
+<script src="/static/js/vendor/version2bootstrap.min.js"></script>
+
+<body>
+  <%- include ../../components/navbar%>
+  <div class="container-fluid">
+    <section style="margin-top: 4vw">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <form role="form" method="POST" action="/admin/user/new">
+              <%if((data && data.message) || (data && data.error)){%>
+              <div id="signupalert" class="alert alert-danger">
+                <%if(data.error) {%>
+                <%= data.error%>
+                <%}%>
+                <%
+                  if(data.message) {%>
+                <%= data.message%>
+                <%}%>
+              </div>
+              <%}%>
+              <div class="form-group row">
+                <div class="form-group col-sm-6">
+                  <label>Tài khoản</label>
+                  <input class="form-control" name="tai_khoan" placeholder="Tài khoản" />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Mật khẩu</label>
+                  <input class="form-control" name="mat_khau" type="password" placeholder="Mật khẩu" />
+                </div>
+                <div class="form-froup col-sm-6">
+                  <label>Quyền sử dụng</label>
+                  <select name="quyen_su_dung" id="quyen_su_dung" class="form-control">
+                    <option value="user">Người dùng</option>
+                    <option value="admin">Admin</option>
+                    <option value="thu_kho">Thủ kho</option>
+                    <option value="ke_toan">Kế toán</option>
+                  </select>
+                </div>
+                <br />
+                <div class="form-group col-sm-6">
+                  <label>Họ tên</label>
+                  <input class="form-control" name="ho_ten" placeholder="Họ tên" />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Địa chỉ</label>
+                  <input class="form-control" name="dia_chi" placeholder="Địa chỉ" />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Số điện thoại</label>
+                  <input class="form-control" name="sdt" placeholder="Số điện thoại" />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Ngày sinh</label>
+                  <input class="form-control" name="ngay_sinh" type="date" placeholder="Ngày sinh" />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Giới tính</label>
+                  <select name="gioi_tinh" id="gioi_tinh" class="form-control">
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                  </select>
+                </div>
+                <!--
+                    <div class="form-group col-sm-6">
+                      <label>Giới tính</label>
+                      <input class="form-control" type="gioi_tinh" name="gioi_tinh" placeholder="gioi_tinh"/>
+                    </div>
+                  -->
+                <div class="form-group col-sm-6">
+                  <label>Email</label>
+                  <input class="form-control" type="email" name="email" placeholder="Email" />
+                </div>
+              </div>
+              <!-- end div row -->
+              <button type="submit" class="btn btn-success">Thêm</button>
+              <button type="reset" class="btn btn-warning">Đặt lại</button>
+            </form>
+          </div>
+          <!-- /.col-lg-12 (nested) -->
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>

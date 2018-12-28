@@ -1,0 +1,59 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span> <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <%if(data.user.quyen_su_dung == 'admin'){%><a class="navbar-brand" href="/admin">Admin</a>
+        <%}%>
+        <%if(data.user.quyen_su_dung == 'ke_toan'){%><a class="navbar-brand" href="/ketoan">Kế toán</a>
+        <%}%>
+        <%if(data.user.quyen_su_dung == 'thu_kho'){%><a class="navbar-brand" href="/thukho">Thủ kho</a>
+        <%}%>
+        <%if(data.user.quyen_su_dung == 'user'){%><a class="navbar-brand" href="/">Dân đen</a>
+        <%}%>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <%if(data.user.quyen_su_dung == 'admin'){%>
+        <ul class="nav navbar-nav">
+            <li><a href="/admin">Đơn hàng cần duyệt</a></li>
+            <li><a href="/admin/sach">Sách</a></li>
+            <li><a href="/admin/users">Người dùng</a></li>
+            <li><a href="/admin/bills">Hoá đơn</a></li>
+        </ul>
+        <%}%>
+        <%if(data.user.quyen_su_dung == 'ke_toan'){%>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/ketoan">Đơn hàng đang giao</a></li>
+            <!-- <li><a href="#">Link</a></li> -->
+        </ul>
+        <%}%>
+        <%if(data.user.quyen_su_dung == 'thu_kho'){%>
+        <ul class="nav navbar-nav">
+            <li><a href="/thukho">Home</a></li>
+            <li><a href="/thukho/bills/delivery">Đơn hàng cần giao</a></li>
+            <li><a href="/thukho">Sách</a></li>
+        </ul>
+        <%}%>
+        <%if(data.user.quyen_su_dung == 'user'){%>
+        <%}%>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <%=
+            data.user.ho_ten%> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Thông tin tài khoản</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/signin">Đăng xuất</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>

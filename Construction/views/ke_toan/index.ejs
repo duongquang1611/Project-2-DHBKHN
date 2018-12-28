@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Kế toán</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <script src="/static/js/vendor/jquery-library.js"></script>
+    <script src="/static/js/vendor/version2bootstrap.min.js"></script>
+
+    <!-- DataTables CSS -->
+    <link
+      href="/static/testDataTable/vendor/datatables-plugins/dataTables.bootstrap.css"
+      rel="stylesheet"
+    />
+
+    <!-- DataTables Responsive CSS -->
+    <link
+      href="/static/testDataTable/vendor/datatables-responsive/dataTables.responsive.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link
+      href="/static/testDataTable/dist/css/sb-admin-2.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Fonts -->
+    <link
+      href="/static/testDataTable/vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+
+  <body>
+    <%- include ../components/navbar %>
+
+    <section style="margin-top: 4vw">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">Đơn hàng cần giao</div>
+            <!-- /.panel-heading -->
+            <div class="panel-body container-fluid">
+              <table
+                width="100%"
+                class="table table-striped table-bordered table-hover"
+                id="bill_table"
+              >
+                <thead>
+                  <tr>
+                    <th>Mã HĐB</th>
+                    <th>Tên khách hàng</th>
+                    <th>Ngày</th>
+                    <th>Sản phẩm</th>
+                    <th>ID Shipper</th>
+                    <th>Trạng thái đơn</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%for(let i=0; i < data.bills.length; i++){%>
+                  <tr>
+                    <td><%= data.bills[i].ma_hoa_don_ban%></td>
+                    <td><%= data.bills[i].ho_ten%></td>
+                    <td><%= data.bills[i].ngay_tao%></td>
+
+                    <td>
+                      <% for(let j = 0; j < data.bills[i].san_pham.length; j++)
+                      {%> Mã sách: <%= data.bills[i].san_pham[j].ma_sach%>
+                      <br />Tên sách: <%=
+                      data.bills[i].san_pham[j].ten_sach%><br />
+                      Số lượng: <%= data.bills[i].san_pham[j].so_luong%>
+                      <br /><br />
+                      <%}%>
+                    </td>
+
+                    <td><%= data.bills[i].id_shipper%></td>
+                    <td>
+                      <% if (data.bills[i].trang_thai_don == 'cho_duyet') {%>
+                      Chờ duyệt <% } else if(data.bills[i].trang_thai_don ==
+                      'da_duyet'){ %> Đã duyệt <% } else
+                      if(data.bills[i].trang_thai_don == 'dang_giao'){ %> Đang
+                      vận chuyển <% } else if(data.bills[i].trang_thai_don ==
+                      'da_thanh_toan') {%> Đã thanh toán <%} else %>
+                      <%data.bills[i].trang_thai_don%>
+                    </td>
+                    <td>
+                      <a
+                        type="submit"
+                        title="Xác nhận đơn đã thanh toán"
+                        name="buttonUpdate"
+                        id="buttonUpdate"
+                        href="/ketoan/thanhtoan/<%=data.bills[i].ma_hoa_don_ban%>"
+                        class="btn btn-primary"
+                        >Thanh toán</a
+                      >
+                      <a
+                        title="Xác nhận đơn bị huỷ"
+                        type="submit"
+                        href="/ketoan/bills/canceled/<%=data.bills[i].ma_hoa_don_ban%>"
+                        name="buttonDelete"
+                        id="buttonDelete"
+                        class="btn btn-danger delete_bill_ketoan"
+                      >
+                        Huỷ đơn</a
+                      >
+                    </td>
+                  </tr>
+
+                  <%}%>
+                </tbody>
+              </table>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+          </div>
+          <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+      </div>
+    </section>
+    <!-- jQuery -->
+    <script src="/static/testDataTable/vendor/jquery/jquery.min.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="/static/testDataTable/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/static/testDataTable/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="/static/testDataTable/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <!-- <script src="/static/js/bill.js"></script> -->
+    <script>
+      $(document).ready(function() {
+        $("#bill_table").DataTable({
+          responsive: true
+        });
+      });
+    </script>
+  </body>
+</html>

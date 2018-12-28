@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cập nhật người dùng</title>
+  </head>
+  <script src="/static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+  <script src="/static/js/vendor/jquery-library.js"></script>
+  <script src="/static/js/vendor/version2bootstrap.min.js"></script>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button
+          type="button"
+          class="navbar-toggle"
+          data-toggle="collapse"
+          data-target=".navbar-ex1-collapse"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span> <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/admin">Admin</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/admin">Đơn hàng cần duyệt</a></li>
+          <li><a href="/admin/sach">Sách</a></li>
+          <li><a href="/admin/users">Người dùng</a></li>
+          <li><a href="/admin/bills">Hoá đơn</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              <%= data.userSignIn.ho_ten%> <b class="caret"></b
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Thông tin tài khoản</a></li>
+              <li class="divider"></li>
+              <li><a href="/signin">Đăng xuất</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+
+    <div class="container-fluid">
+      <section style="margin-top: 4vw">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <form role="form" method="" action="">
+                <%if((data && data.message) || (data && data.error)){%>
+                <div id="signupalert" class="alert alert-danger">
+                  <%if(data.error) {%> <%= data.error%> <%}%> <%
+                  if(data.message) {%> <%= data.message%> <%}%>
+                </div>
+                <%}%>
+                <div class="form-group row">
+                  <input
+                    class="ma_tai_khoan"
+                    type="hidden"
+                    value="<%= data.user.ma_tai_khoan%>"
+                  />
+                  <div class="form-group col-sm-6">
+                    <label>Tài khoản</label>
+                    <input
+                      class="form-control tai_khoan"
+                      name="tai_khoan"
+                      placeholder="Tài khoản"
+                      value="<%= data.user.tai_khoan%>"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label>Mật khẩu</label>
+                    <input
+                      class="form-control mat_khau"
+                      name="mat_khau"
+                      type="password"
+                      placeholder="Mật khẩu"
+                      value="<%= data.user.mat_khau%>"
+                    />
+                  </div>
+                  <div class="form-froup col-sm-6">
+                    <label>Quyền sử dụng</label>
+                    <select
+                      name="quyen_su_dung"
+                      id="quyen_su_dung"
+                      class="form-control quyen_su_dung"
+                    >
+                      <option value="user">Người dùng</option>
+                      <option value="admin">Admin</option>
+                      <option value="thu_kho">Thủ kho</option>
+                      <option value="ke_toan">Kế toán</option>
+                    </select>
+                  </div>
+                  <br />
+                  <div class="form-group col-sm-6">
+                    <label>Họ tên</label>
+                    <input
+                      class="form-control ho_ten"
+                      name="ho_ten"
+                      placeholder="Họ tên"
+                      value="<%= data.user.ho_ten%>"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label>Địa chỉ</label>
+                    <input
+                      class="form-control dia_chi"
+                      name="dia_chi"
+                      placeholder="Địa chỉ"
+                      value="<%= data.user.dia_chi%>"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label>Số điện thoại</label>
+                    <input
+                      class="form-control sdt"
+                      name="sdt"
+                      placeholder="Số điện thoại"
+                      value="<%= data.user.sdt%>"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label>Ngày sinh</label>
+                    <input
+                      class="form-control ngay_sinh"
+                      name="ngay_sinh"
+                      type="date"
+                      placeholder="Ngày sinh"
+                      value="<%= data.user.ngay_sinh%>"
+                    />
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label>Giới tính</label>
+                    <select
+                      name="gioi_tinh"
+                      id="gioi_tinh"
+                      class="form-control gioi_tinh"
+                    >
+                      <option value="Nam" <% if(data.user.gioi_tinh == 'Nam'){%> selected <%}%> >Nam</option>
+                      <option value="Nữ" <% if(data.user.gioi_tinh == 'Nữ'){%> selected <%}%> >Nữ</option>
+                    </select>
+                  </div>
+                  <!--
+                    <div class="form-group col-sm-6">
+                      <label>Giới tính</label>
+                      <input class="form-control" type="gioi_tinh" name="gioi_tinh" placeholder="gioi_tinh"/>
+                    </div>
+                  -->
+                  <div class="form-group col-sm-6">
+                    <label>Email</label>
+                    <input
+                      class="form-control email"
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value="<%= data.user.email%>"
+                    />
+                  </div>
+                </div>
+                <!-- end div row -->
+                <input
+                  type="button"
+                  class="btn btn-success user_update"
+                  value="Cập nhật"
+                />
+                <button type="reset" class="btn btn-warning">Đặt lại</button>
+              </form>
+            </div>
+            <!-- /.col-lg-12 (nested) -->
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="/static/js/user.js"></script>
+  </body>
+</html>

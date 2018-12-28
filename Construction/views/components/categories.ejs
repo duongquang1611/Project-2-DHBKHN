@@ -1,0 +1,15 @@
+<div class="tg-widget tg-catagories">
+    <div class="tg-widgettitle">
+        <h3>Tất cả thể loại</h3>
+    </div>
+    <div class="tg-widgetcontent">
+        <% if (data && data.categories) { %>
+        <ul>
+            <%for (let i = 0; i < data.categories.length; i ++) { %>
+            <li><a href="/products/<%= data.categories[i].ma_the_loai %>"><span>
+                        <%= data.categories[i].ten_the_loai %></span></a></li>
+            <% } %>
+        </ul>
+        <% } %>
+    </div>
+</div>

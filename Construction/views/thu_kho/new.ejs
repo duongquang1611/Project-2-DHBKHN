@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Thêm sản phẩm</title>
+</head>
+
+<script src="/static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+<script src="/static/js/vendor/jquery-library.js"></script>
+<script src="/static/js/vendor/version2bootstrap.min.js"></script>
+
+<body>
+  <%- include ../components/navbar %>
+  <div class="container-fluid">
+    <section style="margin-top: 4vw">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <form role="form" method="POST" action="/thukho/sach/new">
+              <!--
+                  <%if((data && data.message) || (data && data.error)){%>
+                  <div id="signupalert" class="alert alert-danger">
+                    <%if(data.error) {%> <%= data.error%> <%}%> <%
+                    if(data.message) {%> <%= data.message%> <%}%>
+                  </div>
+                  <%}%>
+                -->
+
+              <div class="form-group row">
+                <div class="form-froup col-sm-6">
+                  <label>Thể loại</label>
+
+                  <select name="ma_the_loai" id="ma_the_loai" class="form-control">
+                    <% for(var i = 0; i < data.category.length; i++){%>
+                    <option value="<%= data.category[i].ma_the_loai%>">
+                      <%= data.category[i].ten_the_loai%>
+                    </option>
+                    <%}%>
+                  </select>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Tên sách</label>
+                  <input class="form-control" name="ten_sach" placeholder="Tên sách" />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Tác giả</label>
+                  <input class="form-control" name="tac_gia" placeholder="Tác giả" />
+                </div>
+
+                <div class="form-group col-sm-6">
+                  <label>Nhà xuất bản</label>
+                  <input class="form-control" name="nha_xuat_ban" placeholder="Nhà xuất bản" />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Năm xuất bản</label>
+                  <input class="form-control" name="nam_xuat_ban" placeholder="Năm xuất bản" />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Số lượng</label>
+                  <input class="form-control" name="so_luong" type="number" placeholder="Số lượng" />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Giá nhập</label>
+                  <input class="form-control" name="gia_nhap" placeholder="Giá nhập" />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Giá bán</label>
+                  <input class="form-control" name="gia_ban" placeholder="Giá bán" />
+                </div>
+              </div>
+              <!-- end div row -->
+              <button type="submit" class="btn btn-success">Thêm</button>
+              <button type="reset" class="btn btn-warning">Đặt lại</button>
+            </form>
+          </div>
+          <!-- /.col-lg-12 (nested) -->
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>
